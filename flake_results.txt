@@ -1,0 +1,120 @@
+./tkmain.py:3:1: F403 'from tkinter import *' used; unable to detect undefined names
+./tkmain.py:14:1: E302 expected 2 blank lines, found 0
+./tkmain.py:22:1: E303 too many blank lines (3)
+./tkmain.py:23:1: E302 expected 2 blank lines, found 0
+./tkmain.py:25:26: F405 'DISABLED' may be undefined, or defined from star imports: tkinter
+./tkmain.py:26:26: F405 'NORMAL' may be undefined, or defined from star imports: tkinter
+./tkmain.py:30:1: E303 too many blank lines (3)
+./tkmain.py:30:1: E265 block comment should start with '# '
+./tkmain.py:30:80: E501 line too long (86 > 79 characters)
+./tkmain.py:31:1: E302 expected 2 blank lines, found 3
+./tkmain.py:37:26: E231 missing whitespace after ','
+./tkmain.py:45:1: W293 blank line contains whitespace
+./tkmain.py:60:1: W293 blank line contains whitespace
+./tkmain.py:67:1: W293 blank line contains whitespace
+./tkmain.py:69:5: E303 too many blank lines (2)
+./tkmain.py:74:5: E265 block comment should start with '# '
+./tkmain.py:79:1: E303 too many blank lines (3)
+./tkmain.py:79:1: E265 block comment should start with '# '
+./tkmain.py:80:1: E302 expected 2 blank lines, found 3
+./tkmain.py:85:9: E265 block comment should start with '# '
+./tkmain.py:89:28: F405 'END' may be undefined, or defined from star imports: tkinter
+./tkmain.py:95:28: F405 'END' may be undefined, or defined from star imports: tkinter
+./tkmain.py:99:27: F405 'END' may be undefined, or defined from star imports: tkinter
+./tkmain.py:103:24: F405 'ACTIVE' may be undefined, or defined from star imports: tkinter
+./tkmain.py:108:32: F405 'END' may be undefined, or defined from star imports: tkinter
+./tkmain.py:118:9: E265 block comment should start with '# '
+./tkmain.py:119:38: W291 trailing whitespace
+./tkmain.py:122:32: E231 missing whitespace after ','
+./tkmain.py:125:1: E265 block comment should start with '# '
+./tkmain.py:125:80: E501 line too long (80 > 79 characters)
+./tkmain.py:130:18: F405 'Toplevel' may be undefined, or defined from star imports: tkinter
+./tkmain.py:133:9: F405 'Label' may be undefined, or defined from star imports: tkinter
+./tkmain.py:141:39: E231 missing whitespace after ':'
+./tkmain.py:153:39: E231 missing whitespace after ':'
+./tkmain.py:154:25: E122 continuation line missing indentation or outdented
+./tkmain.py:161:18: F405 'Toplevel' may be undefined, or defined from star imports: tkinter
+./tkmain.py:191:1: E265 block comment should start with '# '
+./tkmain.py:192:1: E265 block comment should start with '# '
+./tkmain.py:197:1: E265 block comment should start with '# '
+./tkmain.py:198:1: E265 block comment should start with '# '
+./tkmain.py:199:80: E501 line too long (81 > 79 characters)
+./tkmain.py:202:1: E265 block comment should start with '# '
+./tkmain.py:206:1: E265 block comment should start with '# '
+./tkmain.py:207:80: E501 line too long (104 > 79 characters)
+./tkmain.py:210:1: E265 block comment should start with '# '
+./tkmain.py:216:1: E303 too many blank lines (3)
+./tkmain.py:216:1: E265 block comment should start with '# '
+./tkmain.py:217:1: E265 block comment should start with '# '
+./tkmain.py:219:36: W291 trailing whitespace
+./tkmain.py:227:1: E265 block comment should start with '# '
+./tkmain.py:228:13: F405 'Scrollbar' may be undefined, or defined from star imports: tkinter
+./tkmain.py:229:21: F405 'RIGHT' may be undefined, or defined from star imports: tkinter
+./tkmain.py:229:33: F405 'BOTH' may be undefined, or defined from star imports: tkinter
+./tkmain.py:233:1: E265 block comment should start with '# '
+./tkmain.py:245:1: E303 too many blank lines (3)
+./tkmain.py:245:1: E265 block comment should start with '# '
+./tkmain.py:246:1: E265 block comment should start with '# '
+./tkmain.py:250:33: W291 trailing whitespace
+./tkmain.py:256:39: E231 missing whitespace after ':'
+./tkmain.py:263:1: E265 block comment should start with '# '
+./tkmain.py:277:31: F405 'DISABLED' may be undefined, or defined from star imports: tkinter
+./tkmain.py:281:1: W293 blank line contains whitespace
+./tkmain.py:282:1: E265 block comment should start with '# '
+./tkmain.py:292:39: E231 missing whitespace after ':'
+./tkmain.py:293:25: E122 continuation line missing indentation or outdented
+./tkmain.py:294:25: E122 continuation line missing indentation or outdented
+./tkmain.py:294:54: W291 trailing whitespace
+./tkmain.py:295:25: E122 continuation line missing indentation or outdented
+./tkmain.py:300:1: E265 block comment should start with '# '
+./tkmain.py:310:39: E231 missing whitespace after ':'
+./tkmain.py:312:57: W291 trailing whitespace
+./tkmain.py:313:65: W291 trailing whitespace
+./tkmain.py:318:1: E265 block comment should start with '# '
+./tkmain.py:328:39: E231 missing whitespace after ':'
+./tkmain.py:329:50: W291 trailing whitespace
+./tkmain.py:335:1: E265 block comment should start with '# '
+./tkmain.py:347:67: W291 trailing whitespace
+./tkmain.py:352:1: E265 block comment should start with '# '
+./tkmain.py:373:1: E266 too many leading '#' for block comment
+./tkmain.py:377:16: W292 no newline at end of file
+./ToDo.py:1:1: E265 block comment should start with '# '
+./ToDo.py:3:1: F403 'from pickle import *' used; unable to detect undefined names
+./ToDo.py:3:1: F401 'pickle.*' imported but unused
+./ToDo.py:8:1: E302 expected 2 blank lines, found 1
+./ToDo.py:11:5: E303 too many blank lines (2)
+./ToDo.py:13:27: E231 missing whitespace after ':'
+./ToDo.py:13:80: E501 line too long (90 > 79 characters)
+./ToDo.py:15:9: E265 block comment should start with '# '
+./ToDo.py:15:80: E501 line too long (122 > 79 characters)
+./ToDo.py:18:9: E265 block comment should start with '# '
+./ToDo.py:19:9: E265 block comment should start with '# '
+./ToDo.py:20:9: E265 block comment should start with '# '
+./ToDo.py:23:5: E303 too many blank lines (2)
+./ToDo.py:24:9: E265 block comment should start with '# '
+./ToDo.py:25:9: E265 block comment should start with '# '
+./ToDo.py:26:9: E265 block comment should start with '# '
+./ToDo.py:27:9: E265 block comment should start with '# '
+./ToDo.py:33:5: E303 too many blank lines (2)
+./ToDo.py:38:5: E303 too many blank lines (2)
+./ToDo.py:39:80: E501 line too long (106 > 79 characters)
+./ToDo.py:40:80: E501 line too long (89 > 79 characters)
+./ToDo.py:43:5: E303 too many blank lines (2)
+./ToDo.py:44:80: E501 line too long (107 > 79 characters)
+./ToDo.py:45:80: E501 line too long (90 > 79 characters)
+./ToDo.py:50:9: E265 block comment should start with '# '
+./ToDo.py:53:9: E265 block comment should start with '# '
+./ToDo.py:54:9: E265 block comment should start with '# '
+./ToDo.py:58:1: E265 block comment should start with '# '
+./ToDo.py:60:1: E265 block comment should start with '# '
+./ToDo.py:62:1: E265 block comment should start with '# '
+./ToDo.py:64:1: E265 block comment should start with '# '
+./ToDo.py:66:1: E265 block comment should start with '# '
+./ToDo.py:68:1: E265 block comment should start with '# '
+./ToDo.py:70:1: E265 block comment should start with '# '
+./ToDo.py:73:1: W391 blank line at end of file
+./timetacking.py:3:1: F811 redefinition of unused 'datetime' from line 1
+./timetacking.py:12:80: E501 line too long (81 > 79 characters)
+./timetacking.py:20:80: E501 line too long (92 > 79 characters)
+./timetacking.py:26:15: E271 multiple spaces after keyword
+./timetacking.py:29:1: W391 blank line at end of file

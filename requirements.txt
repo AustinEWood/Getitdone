@@ -1,0 +1,10 @@
+flake8
+flake8-isort
+isort
+mccabe
+pep8
+Pillow
+pycodestyle
+pyflakes
+sqlparse
+testfixtures

@@ -1,6 +1,6 @@
-import datetime
-from datetime import datetime
 import time
+from datetime import datetime
+
 
 time_list = []  # list for time punches
 
@@ -23,7 +23,4 @@ class time_functions():
 
     def show_time():
         new_time = time.strftime("%I:%M:%S %p")
-        return  new_time
-
-
-
+        return new_time
