@@ -85,7 +85,6 @@ class button_options():
     def time_logged():
         """Function to read log file and show in listbox"""
         file_read = open("Time worked", "r")
-        #lines = file_read.read()
         lines = file_read.readlines()
         file_read.close()
         for iteam in lines:
@@ -118,11 +117,12 @@ class button_options():
         wipe_file.truncate(0)
 
     def edit():
-        #listbox.insert("end", "test")
+        """Edit selection in listbox by geting entry from user"""
         text = listbox.curselection()
+        text_entry = text_frame.get()
         for item in listbox.curselection():
             listbox.delete(item)
-            listbox.insert(text, "test")
+            listbox.insert(text, text_entry)
 
 
 #####//////////! Class do deal with any pop up window functions !\\\\\\\\\\#####
@@ -215,6 +215,7 @@ listbox.place(height=618, width=368, x=232, y=32)
 ###Frame 5 text frame###
 text_frame = tk.Entry(space, font="ariel 13", )
 text_frame.place(x=232, y=0, height=33, width=368)
+
 
 
 
