@@ -1,6 +1,7 @@
 #!/bin/python
 import tkinter as tk
 from tkinter import *
+from turtle import done
 from timetacking import time_functions, time_list
 
 
@@ -152,30 +153,30 @@ class pop_ups():
         window.geometry("238x96")
         window.title("Wipe log")
         Label(window, text="Are you sure?",
-              font=('ariel 16')).place(x=65, y=17)
+              font=('ariel 18')).place(x=65, y=17)
         yes = tk.Button(
             window,
             text="Yes",
             fg="#F3E0AA",
             bg="#5239B6",
-            font="ariel 16",
+            font="ariel 18",
             command=lambda: [
                 button_options.wipe("Time worked"),
                 window.destroy()
             ]
         )
-        yes.place(x=12, y=48, height=30, width=80)
+        yes.place(x=12, y=48, height=40, width=80)
         no = tk.Button(
             window,
             text="No",
             fg="#F3E0AA",
             bg="#5239B6",
-            font="ariel 16",
+            font="ariel 18",
             command=lambda: [
                 window.destroy()
             ]
         )
-        no.place(x=140, y=48, height=30, width=80)
+        no.place(x=140, y=48, height=40, width=80)
 
     def Edit_popup():
         """Pop up window to edit log"""
@@ -189,24 +190,24 @@ class pop_ups():
             text="Yes",
             fg="#F3E0AA",
             bg="#5239B6",
-            font="ariel 16",
+            font="ariel 18",
             command=lambda: [
                 button_options.wipe("Time worked"),
                 window.destroy()
             ]
         )
-        yes.place(x=12, y=48, height=30, width=80)
+        yes.place(x=12, y=48, height=40, width=80)
         no = tk.Button(
             window,
             text="No",
             fg="#F3E0AA",
             bg="#5239B6",
-            font="ariel 16",
+            font="ariel 18",
             command=lambda: [
                 window.destroy()
             ]
         )
-        no.place(x=140, y=48, height=30, width=80)
+        no.place(x=140, y=48, height=40, width=80)
 
 
 #####//////////! Frames and Canvas for whole app !\\\\\\\\\\#####
@@ -241,7 +242,7 @@ text_frame.place(x=232, y=8, height=33, width=360)
 clock_label = tk.Label(
     show_clock,
     bg="#D9D9D9",
-    font="ariel 16",
+    font="ariel 18",
     fg="black"
 )
 clock_label.pack(pady=5)
@@ -271,37 +272,43 @@ start_end_time_label.pack()
 
 start_time = tk.Button(
     space,
-    text="Start Time",
+    text="Start",
     padx=10,
     pady=5,
     fg="#F3E0AA",
     bg="#5239B6",
     bd=0,
-    font="ariel 16",
+    font="ariel 18",
     command=lambda: [
         Label_options.show_time_start(),
         button_state(start_time, stop_time),
     ]
 )
-start_time.place(height=30, width=100, x=56, y=141)
+start_time.place(height=40, width=105, x=56, y=141)
+
+def start_time_place2():
+    start_time.place(height=40, width=105, x=11, y=120)
 
 ###Button 2 stop time###
 stop_time = tk.Button(
     space,
-    text="End Time",
+    text="Stop",
     padx=10,
     pady=5,
     fg="#F3E0AA",
     bg="#5239B6",
     bd=0,
-    font="ariel 16",
+    font="ariel 18",
     command=lambda: [
         Label_options.show_time_end(),
         button_state(stop_time, start_time)
     ],
     state=DISABLED
 )
-stop_time.place(height=30, width=100, x=56, y=211)
+stop_time.place(height=40, width=105, x=56, y=211)
+
+def stop_time_place2():
+    stop_time.place(height=40, width=105, x=116, y=120)
 
 ###Button 3 show log files###
 log_files = tk.Button(
@@ -312,21 +319,25 @@ log_files = tk.Button(
     fg="#F3E0AA",
     bg="#5239B6",
     bd=0,
-    font="ariel 16",
+    font="ariel 18",
     command=lambda: [
-        button_options.button_gone(completed),
-        button_options.button_gone(add_TODO),
-        button_options.button_gone(remove2),
-        button_options.button_gone(task_done),
-        button_options.button_gone(completed1),
-        button_options.button_gone(list_to_do),
-        place5(), place6(), place7(), place12(), place13(),
+        start_time_place2(), 
+        stop_time_place2(),
+        log_files_place1(),
+        to_do_place1(),
+        completed_place1(),
+        edit_log_place1(),
+        remove_time_log_place1(),
+        clear_log_place1(), 
         button_options.clear(),
         button_options.time_logged(),
         button_state(log_files, list_to_do),
     ]
 )
-log_files.place(height=30, width=100, x=56, y=281)
+log_files.place(height=40, width=120, x=56, y=281)
+
+def log_files_place1():
+    log_files.place(height=40, width=120, x=55, y=187)
 
 ###Button 4 show To-Do list###
 list_to_do = tk.Button(
@@ -337,25 +348,30 @@ list_to_do = tk.Button(
     fg="#F3E0AA",
     bg="#5239B6",
     bd=0,
-    font="ariel 16",
+    font="ariel 18",
     command=lambda: [
-        button_options.button_gone(edit_log),
-        button_options.button_gone(clear_log),
-        button_options.button_gone(remove1),
-        button_options.button_gone(completed1),
         button_options.clear(),
         button_options.To_do_list(),
         button_state(list_to_do, log_files),
-        place8(), place9(), place10(), place11()
     ]
 )
-list_to_do.place(height=30, width=100, x=56, y=351)
 
-def place14():
-    list_to_do.place(height=30, width=100, x=56, y=351)
+list_to_do.place(height=40, width=120, x=56, y=351)
+
+def to_do_place():
+    list_to_do.place(height=40, width=120, x=56, y=351)
+
+def to_do_place1():
+    list_to_do.place(height=40, width=120, x=55, y=455)
+
+
+def to_do_place2():
+    list_to_do.place(height=40, width=120, x=56, y=528)
+
+
 
 ###Button 12 Edit###
-completed1 = tk.Button(
+completed = tk.Button(
     space,
     text="Completed",
     padx=10,
@@ -363,11 +379,22 @@ completed1 = tk.Button(
     fg="#F3E0AA",
     bg="#5239B6",
     bd=0,
-    font="ariel 16",
-    command=lambda: [
+    font="ariel 18",
+    command=lambda: [ 
     ]
 )
-completed1.place(height=30, width=100, x=56, y=421)
+completed.place(height=40, width=120, x=56, y=421)
+
+def completed_place():
+    completed.place(height=40, width=120, x=56, y=421)
+
+def completed_place1():
+    completed.place(height=40, width=120, x=55, y=522)
+
+def completed_place2():
+    completed.place(height=40, width=120, x=56, y=587)
+
+
 
 #####\\\\\\\\\\! Stage 2 function buttons will be added when log files is used !//////////#####
 
@@ -381,7 +408,7 @@ edit_log = tk.Button(
     fg="#F3E0AA",
     bg="#5239B6",
     bd=0,
-    font="ariel 16",
+    font="ariel 18",
     command=lambda: [
         button_options.edit(),
         button_options.save_listbox("Time worked")
@@ -389,12 +416,12 @@ edit_log = tk.Button(
 )
 
 
-def place5():
-    edit_log.place(height=30, width=100, x=56, y=351)
+def edit_log_place1():
+    edit_log.place(height=40, width=120, x=55, y=254)
 
 
 ###Button 6 remove from to-do list##
-remove1 = tk.Button(
+remove_time_log = tk.Button(
     space,
     text="Remove",
     padx=10,
@@ -402,7 +429,7 @@ remove1 = tk.Button(
     fg="#F3E0AA",
     bg="#5239B6",
     bd=0,
-    font="ariel 16",
+    font="ariel 18",
     command=lambda: [
         button_options.remove_iteam(),
         button_options.save_listbox("Time worked")
@@ -410,8 +437,8 @@ remove1 = tk.Button(
 )
 
 
-def place6():
-    remove1.place(height=30, width=100, x=56, y=410)
+def remove_time_log_place1():
+    remove_time_log.place(height=40, width=120, x=55, y=321)
 
 
 ###Button 7 Clear listbox###
@@ -423,59 +450,16 @@ clear_log = tk.Button(
     fg="#F3E0AA",
     bg="#5239B6",
     bd=0,
-    font="ariel 16",
+    font="ariel 18",
     command=lambda: [
         pop_ups.open_popup()
     ]
 )
 
 
-def place7():
-    clear_log.place(height=30, width=100, x=56, y=469)
+def clear_log_place1():
+    clear_log.place(height=40, width=120, x=55, y=388)
 
-
-list_to_do1 = tk.Button(
-    space,
-    text="To-Do",
-    padx=10,
-    pady=5,
-    fg="#F3E0AA",
-    bg="#5239B6",
-    bd=0,
-    font="ariel 16",
-    command=lambda: [
-        button_options.button_gone(edit_log),
-        button_options.button_gone(clear_log),
-        button_options.button_gone(remove1),
-        button_options.button_gone(completed1),
-        button_options.clear(),
-        button_options.To_do_list(),
-        button_state(list_to_do, log_files),
-        place8(), place9(), place10(), place11(), place14()
-    ]
-)
-
-
-def place12():
-    list_to_do.place(height=30, width=100, x=56, y=528)
-
-
-completed2 = tk.Button(
-    space,
-    text="Completed",
-    padx=10,
-    pady=5,
-    fg="#F3E0AA",
-    bg="#5239B6",
-    bd=0,
-    font="ariel 16",
-    command=lambda: [
-    ]
-)
-
-
-def place13():
-    completed2.place(height=30, width=100, x=56, y=587)
 
 
 #####\\\\\\\\\\! Stage 3 function buttons will be added when To Do is used !//////////#####
@@ -489,7 +473,7 @@ add_TODO = tk.Button(
     fg="#F3E0AA",
     bg="#5239B6",
     bd=0,
-    font="ariel 16",
+    font="ariel 18",
     command=lambda: [
         button_options.add_list(),
         button_options.save_listbox("To-Do list")
@@ -497,12 +481,12 @@ add_TODO = tk.Button(
 )
 
 
-def place8():
-    add_TODO.place(height=30, width=100, x=56, y=410)
+def add_TODO_place1():
+    add_TODO.place(height=40, width=120, x=56, y=410)
 
 
 ###Button 9  Clear listbox###
-remove2 = tk.Button(
+remove_ToDo_list = tk.Button(
     space,
     text="Remove",
     padx=10,
@@ -510,7 +494,7 @@ remove2 = tk.Button(
     fg="#F3E0AA",
     bg="#5239B6",
     bd=0,
-    font="ariel 16",
+    font="ariel 18",
     command=lambda: [
         button_options.remove_iteam(),
         button_options.save_listbox("To-Do list")
@@ -518,8 +502,8 @@ remove2 = tk.Button(
 )
 
 
-def place9():
-    remove2.place(height=30, width=100, x=56, y=469)
+def remove_ToDo_list_place1():
+    remove_ToDo_list.place(height=40, width=120, x=56, y=469)
 
 
 task_done = tk.Button(
@@ -530,7 +514,7 @@ task_done = tk.Button(
     fg="#F3E0AA",
     bg="#5239B6",
     bd=0,
-    font="ariel 16",
+    font="ariel 18",
     command=lambda: [
 
     ]
@@ -538,28 +522,8 @@ task_done = tk.Button(
 )
 
 
-def place10():
-    task_done.place(height=30, width=100, x=56, y=528)
-
-
-###Button 11 Edit###
-completed = tk.Button(
-    space,
-    text="Completed",
-    padx=10,
-    pady=5,
-    fg="#F3E0AA",
-    bg="#5239B6",
-    bd=0,
-    font="ariel 16",
-    command=lambda: [
-    ]
-)
-
-
-def place11():
-    completed.place(height=30, width=100, x=56, y=587)
-
+def task_done_place1():
+    task_done.place(height=40, width=120, x=56, y=528)
 
 
 
