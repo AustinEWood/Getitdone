@@ -1,4 +1,5 @@
 #!/bin/python
+from msilib.schema import ListBox
 import tkinter as tk
 from tkinter import *
 from timetacking import time_functions, time_list
@@ -93,9 +94,16 @@ class button_options():
 
     def To_do_list():
         """Function to show To-Do list in listbox"""
-        x = to_do.show()
-        for iteam in x:
+        file_read = open("To-Do list", "r")
+        lines = file_read.readlines()
+        file_read.close()
+        for iteam in lines:
             listbox.insert(END, iteam)
+
+        #x = to_do.show()
+        #listbox.insert(END, x)
+        #for iteam in x:
+        #    listbox.insert(END, iteam)
 
     def clear():
         """Function to clear the list box"""
@@ -425,6 +433,7 @@ add_TODO = tk.Button(
     font="ariel 16",
     command=lambda: [
         button_options.add_list(),
+        button_options.save_listbox("To-Do list")
     ]
 )
 

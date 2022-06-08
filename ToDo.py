@@ -8,35 +8,33 @@ tasks = [
 
 class to_do():
 
-    def task_text():
-        """Add new task as dictionary to the task list."""
-        new_task = {'name': input(
-            "What task would you like to add: "), 'completed': False}
-        tasks.append(new_task)
-        #new_task = "Name" + str(input("What task would you like to add: "))  +" " + "Completed" + " " + str(False) + "\n"
-        with open('list', 'wb') as f:
-            pickle.dump(tasks, f)
-        #save_file = open("ShowList", "a")
-        # save_file.writelines(str(tasks))
-        # save_file.close()
+    #def task_text():
+    #    """Add new task as dictionary to the task list."""
+    #    new_task = {'name': input("What task would you like to add: "), 'completed': False}
+    #    tasks.append(new_task)
+    #    with open('list', 'wb') as f:
+    #        pickle.dump(tasks, f)
+        #save_file = open("To-Do list", "a")
+        #save_file.writelines(str(tasks))
+        #save_file.close()
 
     def show():
-        #file_read = open("ShowList", "r")
-        #lines = file_read.read()
-        # file_read.close
-        # return lines
-        with open('list', 'rb') as f:
-            add_list = pickle.load(f)
-        return add_list
+        file = open("To-Do list", "r")
+        read_file = file.read()
+        return read_file
+        file.close
+        #with open('list', 'rb') as f:
+        #    add_list = pickle.load(f)
+        #return add_list
 
-    def remove_task():
-        """Select tasks in list by index number and remove task."""
-        del tasks[int(input('Task number to remove: '))]
+    #def remove_task():
+    #    """Select tasks in list by index number and remove task."""
+    #    del tasks[int(input('Task number to remove: '))]
 
-    def completed_task():
-        """Select tasks in list by index number then select key completed and change the value to true."""
-        tasks[int(input('Task number you would like to complete: '))
-              ]['completed'] = True
+    #def completed_task():
+    #   """Select tasks in list by index number then select key completed and change the value to true."""
+    #  tasks[int(input('Task number you would like to complete: '))
+    #         ]['completed'] = True
 
     def unmark_task():
         """Select tasks in list by index number then select key completed and change the value to false."""
