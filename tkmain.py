@@ -1,4 +1,5 @@
 #!/bin/python
+from cProfile import label
 import tkinter as tk
 from tkinter import *
 from turtle import done
@@ -9,10 +10,8 @@ root = tk.Tk()
 root.title("Time Tracking APP")
 root.geometry("600x650+450+200")
 root.resizable(width=False, height=False)
-#root.attributes('-fullscreen', True)
 
-"""Function to save to file"""
-
+###Function to save to file###
 
 def save_file(name, string, function):
     file_save = open("Time worked", 'a')
@@ -22,8 +21,7 @@ def save_file(name, string, function):
 
 
 
-"""Function to change state of buttons"""
-
+###Function to change state of buttons###
 
 def button_state(function1, function2):
     """Switch our state of buttons with each other"""
@@ -151,63 +149,36 @@ class pop_ups():
         """Pop up window to confirm wiping log"""
         window = Toplevel(root)
         window.geometry("238x96")
+        window.resizable(width=False, height=False)
         window.title("Wipe log")
-        Label(window, text="Are you sure?",
-              font=('ariel 18')).place(x=65, y=17)
+        window.config(bg="#3A3A3A")
+        test1 = Label(window, text="This will wipe the log file!" + "\n" + "Are you sure?", font="16", fg="white", bg="#3A3A3A").place(x=33, y=9)
         yes = tk.Button(
             window,
             text="Yes",
-            fg="#F3E0AA",
+            fg="white",
             bg="#5239B6",
-            font="ariel 18",
+            bd=0,
+            font="16",
             command=lambda: [
                 button_options.wipe("Time worked"),
                 window.destroy()
             ]
         )
-        yes.place(x=12, y=48, height=40, width=80)
+        yes.place(x=19.5, y=60, height=30, width=80)
         no = tk.Button(
             window,
             text="No",
-            fg="#F3E0AA",
+            fg="white",
+            bd=0,
             bg="#5239B6",
-            font="ariel 18",
+            font="16",
             command=lambda: [
                 window.destroy()
             ]
         )
-        no.place(x=140, y=48, height=40, width=80)
+        no.place(x=138.5, y=60, height=30, width=80)
 
-    def Edit_popup():
-        """Pop up window to edit log"""
-        window = Toplevel(space)
-        window.geometry("238x96")
-        window.title("Wipe log")
-        text_frame = tk.Entry(window, font="ariel 13", )
-        text_frame.place(x=232, y=0, height=33, width=368)
-        yes = tk.Button(
-            window,
-            text="Yes",
-            fg="#F3E0AA",
-            bg="#5239B6",
-            font="ariel 18",
-            command=lambda: [
-                button_options.wipe("Time worked"),
-                window.destroy()
-            ]
-        )
-        yes.place(x=12, y=48, height=40, width=80)
-        no = tk.Button(
-            window,
-            text="No",
-            fg="#F3E0AA",
-            bg="#5239B6",
-            font="ariel 18",
-            command=lambda: [
-                window.destroy()
-            ]
-        )
-        no.place(x=140, y=48, height=40, width=80)
 
 
 #####//////////! Frames and Canvas for whole app !\\\\\\\\\\#####
