@@ -1,14 +1,14 @@
 #!/bin/python
-from msilib.schema import ListBox
 import tkinter as tk
 from tkinter import *
 from timetacking import time_functions, time_list
-from ToDo import to_do
+
 
 root = tk.Tk()
 root.title("Time Tracking APP")
-root.geometry("600x650")
-
+root.geometry("600x650+450+200")
+root.resizable(width=False, height=False)
+#root.attributes('-fullscreen', True)
 
 """Function to save to file"""
 
@@ -32,7 +32,7 @@ def button_state(function1, function2):
 
 
 
-####//////////! Class function options for setting up app in tkinter !\\\\\\\\\\#####
+####//////////! Class function for labels !\\\\\\\\\\#####
 class Label_options():
     """Class functions for the tkinter application GUI"""
 
@@ -100,10 +100,6 @@ class button_options():
         for iteam in lines:
             listbox.insert(END, iteam)
 
-        #x = to_do.show()
-        #listbox.insert(END, x)
-        #for iteam in x:
-        #    listbox.insert(END, iteam)
 
     def clear():
         """Function to clear the list box"""
@@ -152,7 +148,7 @@ class pop_ups():
 
     def open_popup():
         """Pop up window to confirm wiping log"""
-        window = Toplevel(space)
+        window = Toplevel(root)
         window.geometry("238x96")
         window.title("Wipe log")
         Label(window, text="Are you sure?",
@@ -221,8 +217,7 @@ space.pack()
 
 #####//////////! Creating frames to post in !\\\\\\\\\\#####
 ###Frame 1 show time start and end###
-time_start_end_frame = tk.Frame(
-    space, bg="#3A3A3A")  # Create frame space in app
+time_start_end_frame = tk.Frame(space, bg="#3A3A3A")  # Create frame space in app
 time_start_end_frame.place(height=70, width=210, x=11, y=40)
 
 ###Frame 2 show clock###
@@ -231,12 +226,12 @@ show_clock.place(height=32, width=210, x=11, y=8)
 
 ###listbox to show information###
 listbox = tk.Listbox(space, bg="#3A3A3A",  font=( "ariel 13"), fg="white", bd=0, borderwidth=0, border=0)
-listbox.place(height=618, width=368, x=232, y=32)
+listbox.place(height=601, width=360, x=232, y=41)
 
 ###Frame 5 text frame###
-text_frame = tk.Entry(space, font="ariel 13",)
+text_frame = tk.Entry(space, font="ariel 13", bd=0)
 text_frame.insert(END, "Text goes here!")
-text_frame.place(x=232, y=0, height=33, width=368)
+text_frame.place(x=232, y=8, height=33, width=360)
 
 
 
@@ -323,8 +318,9 @@ log_files = tk.Button(
         button_options.button_gone(add_TODO),
         button_options.button_gone(remove2),
         button_options.button_gone(task_done),
-        #button_options.button_gone(),
-        place5(), place6(), place7(),
+        button_options.button_gone(completed1),
+        button_options.button_gone(list_to_do),
+        place5(), place6(), place7(), place12(), place13(),
         button_options.clear(),
         button_options.time_logged(),
         button_state(log_files, list_to_do),
@@ -346,6 +342,7 @@ list_to_do = tk.Button(
         button_options.button_gone(edit_log),
         button_options.button_gone(clear_log),
         button_options.button_gone(remove1),
+        button_options.button_gone(completed1),
         button_options.clear(),
         button_options.To_do_list(),
         button_state(list_to_do, log_files),
@@ -353,6 +350,24 @@ list_to_do = tk.Button(
     ]
 )
 list_to_do.place(height=30, width=100, x=56, y=351)
+
+def place14():
+    list_to_do.place(height=30, width=100, x=56, y=351)
+
+###Button 12 Edit###
+completed1 = tk.Button(
+    space,
+    text="Completed",
+    padx=10,
+    pady=5,
+    fg="#F3E0AA",
+    bg="#5239B6",
+    bd=0,
+    font="ariel 16",
+    command=lambda: [
+    ]
+)
+completed1.place(height=30, width=100, x=56, y=421)
 
 #####\\\\\\\\\\! Stage 2 function buttons will be added when log files is used !//////////#####
 
@@ -375,7 +390,7 @@ edit_log = tk.Button(
 
 
 def place5():
-    edit_log.place(height=30, width=100, x=56, y=421)
+    edit_log.place(height=30, width=100, x=56, y=351)
 
 
 ###Button 6 remove from to-do list##
@@ -396,7 +411,7 @@ remove1 = tk.Button(
 
 
 def place6():
-    remove1.place(height=30, width=100, x=56, y=491)
+    remove1.place(height=30, width=100, x=56, y=410)
 
 
 ###Button 7 Clear listbox###
@@ -416,7 +431,51 @@ clear_log = tk.Button(
 
 
 def place7():
-    clear_log.place(height=30, width=100, x=56, y=561)
+    clear_log.place(height=30, width=100, x=56, y=469)
+
+
+list_to_do1 = tk.Button(
+    space,
+    text="To-Do",
+    padx=10,
+    pady=5,
+    fg="#F3E0AA",
+    bg="#5239B6",
+    bd=0,
+    font="ariel 16",
+    command=lambda: [
+        button_options.button_gone(edit_log),
+        button_options.button_gone(clear_log),
+        button_options.button_gone(remove1),
+        button_options.button_gone(completed1),
+        button_options.clear(),
+        button_options.To_do_list(),
+        button_state(list_to_do, log_files),
+        place8(), place9(), place10(), place11(), place14()
+    ]
+)
+
+
+def place12():
+    list_to_do.place(height=30, width=100, x=56, y=528)
+
+
+completed2 = tk.Button(
+    space,
+    text="Completed",
+    padx=10,
+    pady=5,
+    fg="#F3E0AA",
+    bg="#5239B6",
+    bd=0,
+    font="ariel 16",
+    command=lambda: [
+    ]
+)
+
+
+def place13():
+    completed2.place(height=30, width=100, x=56, y=587)
 
 
 #####\\\\\\\\\\! Stage 3 function buttons will be added when To Do is used !//////////#####
@@ -495,11 +554,12 @@ completed = tk.Button(
     font="ariel 16",
     command=lambda: [
     ]
-)  # pop_ups.Edit_popup()
+)
 
 
 def place11():
     completed.place(height=30, width=100, x=56, y=587)
+
 
 
 
