@@ -1,5 +1,8 @@
 #!/bin/python
 from cProfile import label
+from cgitb import text
+from glob import glob
+from pickle import GLOBAL
 import tkinter as tk
 from tkinter import *
 from turtle import done
@@ -120,18 +123,18 @@ class button_options():
         wipe_file = open(name, 'r+')
         wipe_file.truncate(0)
 
-    def edit():
-        """Edit selection in listbox by geting entry from user"""
-        #for item in listbox.curselection():
-            #text_frame.insert(END, item)
-        text = listbox.curselection()
-        test2 = listbox.clipboard_get(text)
-        text_frame.insert(END, test2)
-        #text_entry = text_frame.get()
-        #for item in listbox.curselection():
-        #    listbox.delete(item)
-        #    listbox.insert(text, text_entry + "\n")
-    
+    def select_edit():
+        """Select from listbox for edit"""
+        text_frame.delete(0, END)
+        text = listbox.get(ANCHOR)
+        text_frame.insert(END, text)
+
+    def add_todo():
+        """Add edited selection to listbox for save"""
+        text_entry = text_frame.get()
+        listbox.insert(ACTIVE, text_entry)
+        listbox.delete(ACTIVE)
+  
     def add_list():
         text_entry = text_frame.get()
         listbox.insert(0, text_entry + "\n")
@@ -236,11 +239,9 @@ start_end_time_label = tk.Label(
 start_end_time_label.pack()
 
 
-#####\\\\\\\\\\! Stage 1 function buttons will never move !//////////#####
+#####\\\\\\\\\\! Stage 1 function buttons !//////////#####
 
 ###Button 1 start time###
-
-
 start_time = tk.Button(
     space,
     text="Start",
@@ -256,6 +257,9 @@ start_time = tk.Button(
     ]
 )
 start_time.place(height=40, width=105, x=56, y=141)
+
+def start_time_place1():
+    start_time.place(height=40, width=105, x=56, y=141)
 
 def start_time_place2():
     start_time.place(height=40, width=105, x=11, y=120)
@@ -278,10 +282,13 @@ stop_time = tk.Button(
 )
 stop_time.place(height=40, width=105, x=56, y=211)
 
+def stop_time_place1():
+    stop_time.place(height=40, width=105, x=56, y=211)
+
 def stop_time_place2():
     stop_time.place(height=40, width=105, x=116, y=120)
 
-###Button 3 show log files###
+###Button 3 show time log###
 log_files = tk.Button(
     space,
     text="Time Log",
@@ -300,12 +307,17 @@ log_files = tk.Button(
         edit_log_place1(),
         remove_time_log_place1(),
         clear_log_place1(), 
+        main_menu_place(),
+        submit_palce(),
         button_options.clear(),
         button_options.time_logged(),
         button_state(log_files, list_to_do),
     ]
 )
 log_files.place(height=40, width=120, x=56, y=281)
+
+def log_files_place():
+    log_files.place(height=40, width=120, x=56, y=281)
 
 def log_files_place1():
     log_files.place(height=40, width=120, x=55, y=187)
@@ -341,7 +353,7 @@ def to_do_place2():
 
 
 
-###Button 12 Edit###
+###Button 5 show Completed list###
 completed = tk.Button(
     space,
     text="Completed",
@@ -370,7 +382,7 @@ def completed_place2():
 #####\\\\\\\\\\! Stage 2 function buttons will be added when log files is used !//////////#####
 
 
-###Button 5 Edit###
+###Button 6 select time log to edit###
 edit_log = tk.Button(
     space,
     text="Edit",
@@ -381,14 +393,32 @@ edit_log = tk.Button(
     bd=0,
     font="ariel 18",
     command=lambda: [
-        button_options.edit(),
+        button_options.select_edit(),
+    ]
+)
+
+def edit_log_place1():
+    edit_log.place(height=40, width=105, x=11, y=254)
+
+###Button 7 submit edited time log to listbox for save###
+submit = tk.Button(
+    space,
+    text="Submit",
+    padx=10,
+    pady=5,
+    fg="#F3E0AA",
+    bg="#5239B6",
+    bd=0,
+    font="ariel 18",
+    command=lambda: [
+        button_options.add_todo(),
         button_options.save_listbox("Time worked")
     ]
 )
 
 
-def edit_log_place1():
-    edit_log.place(height=40, width=120, x=55, y=254)
+def submit_palce():
+    submit.place(height=40, width=105, x=117, y=254)
 
 
 ###Button 6 remove from to-do list##
@@ -430,6 +460,33 @@ clear_log = tk.Button(
 
 def clear_log_place1():
     clear_log.place(height=40, width=120, x=55, y=388)
+
+
+###Button 12 Edit###
+main_menu = tk.Button(
+    space,
+    text="Main Menu",
+    padx=10,
+    pady=5,
+    fg="#F3E0AA",
+    bg="#5239B6",
+    bd=0,
+    font="ariel 18",
+    command=lambda: [
+        start_time_place1(),
+        stop_time_place1(),
+        log_files_place(),
+        to_do_place(),
+        completed_place(),
+        button_options.button_gone(edit_log),
+        button_options.button_gone(remove_time_log),
+        button_options.button_gone(clear_log),
+        button_options.button_gone(main_menu),
+        button_options.button_gone(submit)
+    ]
+)
+def main_menu_place():
+    main_menu.place(height=40, width=120, x=55, y=589)
 
 
 
