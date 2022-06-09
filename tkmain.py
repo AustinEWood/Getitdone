@@ -1,11 +1,7 @@
 #!/bin/python
-from cProfile import label
-from cgitb import text
-from glob import glob
-from pickle import GLOBAL
+from asyncio import tasks
 import tkinter as tk
 from tkinter import *
-from turtle import done
 from timetacking import time_functions, time_list
 
 
@@ -78,9 +74,6 @@ class Label_options():
         clock_label["text"] = time_functions.show_time()
         show_clock.after(200, Label_options.show_time)
 
-    # def copy_file():
-    #    copy = open(,)
-
 
 
 ####//////////! Class to deal with button options !\\\\\\\\\\#####
@@ -126,7 +119,7 @@ class button_options():
     def select_edit():
         """Select from listbox for edit"""
         text_frame.delete(0, END)
-        text = listbox.get(ANCHOR)
+        text = listbox.get(ACTIVE)
         text_frame.insert(END, text)
 
     def add_todo():
@@ -141,6 +134,13 @@ class button_options():
     
     def button_gone(name):
         name.place_forget()
+
+    def done_task():
+        text = listbox.get(ACTIVE)
+        file = open("Completed task", "a")
+        file.writelines(text)
+        file.close
+
         
 
 
@@ -243,10 +243,10 @@ start_end_time_label.pack()
 
 ###Button 1 start time###
 start_time = tk.Button(
-    space,
+    root,
     text="Start",
-    padx=10,
-    pady=5,
+    #padx=10,
+    #pady=5,
     fg="#F3E0AA",
     bg="#5239B6",
     bd=0,
@@ -256,20 +256,18 @@ start_time = tk.Button(
         button_state(start_time, stop_time),
     ]
 )
-start_time.place(height=40, width=105, x=56, y=141)
+start_time.place(height=40, width=105, x=55, y=141)
 
 def start_time_place1():
-    start_time.place(height=40, width=105, x=56, y=141)
+    start_time.place(height=40, width=105, x=55, y=141)
 
 def start_time_place2():
     start_time.place(height=40, width=105, x=11, y=120)
 
 ###Button 2 stop time###
 stop_time = tk.Button(
-    space,
+    root,
     text="Stop",
-    padx=10,
-    pady=5,
     fg="#F3E0AA",
     bg="#5239B6",
     bd=0,
@@ -280,10 +278,10 @@ stop_time = tk.Button(
     ],
     state=DISABLED
 )
-stop_time.place(height=40, width=105, x=56, y=211)
+stop_time.place(height=40, width=105, x=55, y=226)
 
 def stop_time_place1():
-    stop_time.place(height=40, width=105, x=56, y=211)
+    stop_time.place(height=40, width=105, x=55, y=226)
 
 def stop_time_place2():
     stop_time.place(height=40, width=105, x=116, y=120)
@@ -292,8 +290,6 @@ def stop_time_place2():
 log_files = tk.Button(
     space,
     text="Time Log",
-    padx=10,
-    pady=5,
     fg="#F3E0AA",
     bg="#5239B6",
     bd=0,
@@ -302,22 +298,23 @@ log_files = tk.Button(
         start_time_place2(), 
         stop_time_place2(),
         log_files_place1(),
-        to_do_place1(),
-        completed_place1(),
         edit_log_place1(),
         remove_time_log_place1(),
         clear_log_place1(), 
         main_menu_place(),
-        submit_palce(),
+        button_options.button_gone(add_TODO),
+        button_options.button_gone(remove_ToDo_list),
+        button_options.button_gone(task_done),
+        button_options.button_gone(completed),
+        button_options.button_gone(list_to_do),
         button_options.clear(),
         button_options.time_logged(),
-        button_state(log_files, list_to_do),
     ]
 )
-log_files.place(height=40, width=120, x=56, y=281)
+log_files.place(height=40, width=120, x=55, y=311)
 
 def log_files_place():
-    log_files.place(height=40, width=120, x=56, y=281)
+    log_files.place(height=40, width=120, x=55, y=311)
 
 def log_files_place1():
     log_files.place(height=40, width=120, x=55, y=187)
@@ -326,30 +323,34 @@ def log_files_place1():
 list_to_do = tk.Button(
     space,
     text="To-Do",
-    padx=10,
-    pady=5,
     fg="#F3E0AA",
     bg="#5239B6",
     bd=0,
     font="ariel 18",
     command=lambda: [
+        button_options.button_gone(edit_log),
+        button_options.button_gone(remove_time_log),
+        button_options.button_gone(clear_log),
+        button_options.button_gone(completed),
+        to_do_place1(), 
+        start_time_place2(),
+        stop_time_place2(),
+        main_menu_place(),
+        add_TODO_place1(),
+        remove_ToDo_list_place1(),
+        task_done_place1(),
         button_options.clear(),
         button_options.To_do_list(),
-        button_state(list_to_do, log_files),
     ]
 )
 
-list_to_do.place(height=40, width=120, x=56, y=351)
+list_to_do.place(height=40, width=120, x=55, y=397)
 
 def to_do_place():
-    list_to_do.place(height=40, width=120, x=56, y=351)
+    list_to_do.place(height=40, width=120, x=55, y=397)
 
 def to_do_place1():
-    list_to_do.place(height=40, width=120, x=55, y=455)
-
-
-def to_do_place2():
-    list_to_do.place(height=40, width=120, x=56, y=528)
+    list_to_do.place(height=40, width=120, x=55, y=187)
 
 
 
@@ -357,8 +358,6 @@ def to_do_place2():
 completed = tk.Button(
     space,
     text="Completed",
-    padx=10,
-    pady=5,
     fg="#F3E0AA",
     bg="#5239B6",
     bd=0,
@@ -366,16 +365,16 @@ completed = tk.Button(
     command=lambda: [ 
     ]
 )
-completed.place(height=40, width=120, x=56, y=421)
+completed.place(height=40, width=120, x=55, y=483)
 
 def completed_place():
-    completed.place(height=40, width=120, x=56, y=421)
+    completed.place(height=40, width=120, x=55, y=483)
 
 def completed_place1():
     completed.place(height=40, width=120, x=55, y=522)
 
 def completed_place2():
-    completed.place(height=40, width=120, x=56, y=587)
+    completed.place(height=40, width=120, x=55, y=587)
 
 
 
@@ -386,47 +385,43 @@ def completed_place2():
 edit_log = tk.Button(
     space,
     text="Edit",
-    padx=10,
-    pady=5,
     fg="#F3E0AA",
     bg="#5239B6",
     bd=0,
     font="ariel 18",
     command=lambda: [
         button_options.select_edit(),
+        submit_palce()
     ]
 )
 
 def edit_log_place1():
-    edit_log.place(height=40, width=105, x=11, y=254)
+    edit_log.place(height=40, width=120, x=55, y=254)
 
 ###Button 7 submit edited time log to listbox for save###
 submit = tk.Button(
     space,
     text="Submit",
-    padx=10,
-    pady=5,
     fg="#F3E0AA",
     bg="#5239B6",
     bd=0,
     font="ariel 18",
     command=lambda: [
         button_options.add_todo(),
-        button_options.save_listbox("Time worked")
+        button_options.save_listbox("Time worked"),
+        button_options.button_gone(submit)
     ]
 )
 
 
 def submit_palce():
-    submit.place(height=40, width=105, x=117, y=254)
+    submit.place(height=40, width=120, x=55, y=254)
 
 
-###Button 6 remove from to-do list##
+###Button 8 remove from to-do list##
 remove_time_log = tk.Button(
     space,
     text="Remove",
-    padx=10,
-    pady=5,
     fg="#F3E0AA",
     bg="#5239B6",
     bd=0,
@@ -442,12 +437,10 @@ def remove_time_log_place1():
     remove_time_log.place(height=40, width=120, x=55, y=321)
 
 
-###Button 7 Clear listbox###
+###Button 9 Clear file warning###
 clear_log = tk.Button(
     space,
     text="Clear Log",
-    padx=10,
-    pady=5,
     fg="#F3E0AA",
     bg="#5239B6",
     bd=0,
@@ -462,12 +455,10 @@ def clear_log_place1():
     clear_log.place(height=40, width=120, x=55, y=388)
 
 
-###Button 12 Edit###
+###Button 10 go back to main_menu###
 main_menu = tk.Button(
     space,
     text="Main Menu",
-    padx=10,
-    pady=5,
     fg="#F3E0AA",
     bg="#5239B6",
     bd=0,
@@ -482,7 +473,10 @@ main_menu = tk.Button(
         button_options.button_gone(remove_time_log),
         button_options.button_gone(clear_log),
         button_options.button_gone(main_menu),
-        button_options.button_gone(submit)
+        button_options.button_gone(submit),
+        button_options.button_gone(add_TODO),
+        button_options.button_gone(remove_ToDo_list),
+        button_options.button_gone(task_done)
     ]
 )
 def main_menu_place():
@@ -492,12 +486,10 @@ def main_menu_place():
 
 #####\\\\\\\\\\! Stage 3 function buttons will be added when To Do is used !//////////#####
 
-###Button 8 Clear listbox###
+###Button 11 add to to-do list###
 add_TODO = tk.Button(
     space,
     text="Add",
-    padx=10,
-    pady=5,
     fg="#F3E0AA",
     bg="#5239B6",
     bd=0,
@@ -510,15 +502,13 @@ add_TODO = tk.Button(
 
 
 def add_TODO_place1():
-    add_TODO.place(height=40, width=120, x=56, y=410)
+    add_TODO.place(height=40, width=120, x=55, y=254)
 
 
-###Button 9  Clear listbox###
+###Button 12  remove from to-do list###
 remove_ToDo_list = tk.Button(
     space,
     text="Remove",
-    padx=10,
-    pady=5,
     fg="#F3E0AA",
     bg="#5239B6",
     bd=0,
@@ -531,27 +521,25 @@ remove_ToDo_list = tk.Button(
 
 
 def remove_ToDo_list_place1():
-    remove_ToDo_list.place(height=40, width=120, x=56, y=469)
+    remove_ToDo_list.place(height=40, width=120, x=55, y=321)
 
 
 task_done = tk.Button(
     space,
-    text="Done",
-    padx=10,
-    pady=5,
+    text="Task Done",
     fg="#F3E0AA",
     bg="#5239B6",
     bd=0,
     font="ariel 18",
     command=lambda: [
-
+        button_options.done_task()
     ]
 
 )
 
 
 def task_done_place1():
-    task_done.place(height=40, width=120, x=56, y=528)
+    task_done.place(height=40, width=120, x=55, y=388)
 
 
 
