@@ -24,3 +24,10 @@ class time_functions():
     def show_time():
         new_time = time.strftime("%I:%M:%S %p")
         return new_time
+
+    def completed_time():
+        x = datetime.now().replace(microsecond=0)
+        """Clean good looking time format for show"""
+        y = datetime.now().strftime("%b %d, %Y %I:%M:%S %p")
+        time_list.append(x)
+        return y

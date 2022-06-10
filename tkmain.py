@@ -85,7 +85,7 @@ class button_options():
         lines = file_read.readlines()
         file_read.close()
         for iteam in lines:
-            listbox.insert(END, iteam)
+            listbox.insert(-1, iteam)
 
     def To_do_list():
         """Function to show To-Do list in listbox"""
@@ -129,17 +129,28 @@ class button_options():
         listbox.delete(ACTIVE)
   
     def add_list():
+        """add item to todo list"""
         text_entry = text_frame.get()
         listbox.insert(0, text_entry + "\n")
     
     def button_gone(name):
+        """Remove the placement of a button"""
         name.place_forget()
 
     def done_task():
+        """Move item from todo list to completed list"""
         text = listbox.get(ACTIVE)
         file = open("Completed task", "a")
         file.writelines(text)
         file.close
+        listbox.delete(ACTIVE)
+
+    def completed_file():
+        file = open("Completed task", "r")
+        text = file.readlines()
+        file.close
+        for iteam in text:
+            listbox.insert(-1, iteam)
 
         
 
@@ -362,7 +373,9 @@ completed = tk.Button(
     bg="#5239B6",
     bd=0,
     font="ariel 18",
-    command=lambda: [ 
+    command=lambda: [
+        button_options.clear(),
+        button_options.completed_file()
     ]
 )
 completed.place(height=40, width=120, x=55, y=483)
@@ -476,7 +489,8 @@ main_menu = tk.Button(
         button_options.button_gone(submit),
         button_options.button_gone(add_TODO),
         button_options.button_gone(remove_ToDo_list),
-        button_options.button_gone(task_done)
+        button_options.button_gone(task_done),
+        button_options.clear()
     ]
 )
 def main_menu_place():
@@ -532,7 +546,8 @@ task_done = tk.Button(
     bd=0,
     font="ariel 18",
     command=lambda: [
-        button_options.done_task()
+        button_options.done_task(),
+        button_options.save_listbox("To-Do list")
     ]
 
 )
