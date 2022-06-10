@@ -1,5 +1,4 @@
 #!/bin/python
-from asyncio import tasks
 import tkinter as tk
 from tkinter import *
 from timetacking import time_functions, time_list
@@ -9,6 +8,7 @@ root = tk.Tk()
 root.title("Time Tracking APP")
 root.geometry("600x650+450+200")
 root.resizable(width=False, height=False)
+
 
 ###Function to save to file###
 
@@ -176,7 +176,8 @@ class pop_ups():
             font="16",
             command=lambda: [
                 button_options.wipe("Time worked"),
-                window.destroy()
+                window.destroy(),
+                button_options.clear()
             ]
         )
         yes.place(x=19.5, y=60, height=30, width=80)
@@ -192,6 +193,49 @@ class pop_ups():
             ]
         )
         no.place(x=138.5, y=60, height=30, width=80)
+
+    def solve_save():
+        """Save on exit if start time is engaged"""
+        if start_time["state"] == DISABLED:
+            window = Toplevel(root)
+            window.geometry("238x96")
+            window.resizable(width=False, height=False)
+            window.title("Stop Time!")
+            window.config(bg="#3A3A3A")
+            test1 = Label(
+                window, text="You are clocked in!" + "\n" + "Would you like to clock out?", 
+                font="16", 
+                fg="white", 
+                bg="#3A3A3A").place(x=33, y=9)
+            yes = tk.Button(
+                window,
+                text="Yes",
+                fg="white",
+                bg="#5239B6",
+                bd=0,
+                font="16",
+                command=lambda: [
+                    Label_options.show_time_end(),
+                    root.destroy()])
+            yes.place(x=19.5, y=60, height=30, width=80)
+            no = tk.Button(
+                window,
+                text="No",
+                fg="white",
+                bd=0,
+                bg="#5239B6",
+                font="16",
+                command=lambda: [
+                    root.destroy()
+                ]
+            )
+            no.place(x=138.5, y=60, height=30, width=80)
+        else:
+            root.destroy()
+            
+            
+       
+
 
 
 
@@ -476,6 +520,7 @@ main_menu = tk.Button(
     bg="#5239B6",
     bd=0,
     font="ariel 18",
+    borderwidth=0,
     command=lambda: [
         start_time_place1(),
         stop_time_place1(),
@@ -495,6 +540,7 @@ main_menu = tk.Button(
 )
 def main_menu_place():
     main_menu.place(height=40, width=120, x=55, y=589)
+
 
 
 
@@ -562,4 +608,5 @@ def task_done_place1():
 Label_options.show_time()
 
 
+root.protocol("WM_DELETE_WINDOW", pop_ups.solve_save)
 root.mainloop()
