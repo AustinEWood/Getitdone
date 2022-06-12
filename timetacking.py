@@ -31,3 +31,13 @@ class time_functions():
         y = datetime.now().strftime("%b %d, %Y %I:%M:%S %p")
         time_list.append(x)
         return y
+
+
+    def start_stop2():
+        """start and stop time function appended to list removing milliseconds"""
+        x = datetime.now().replace(microsecond=0)
+        """Clean good looking time format for show"""
+        y = datetime.now().strftime("%A, %B %d, %Y %I:%M:%S %p")
+        return y
+
+

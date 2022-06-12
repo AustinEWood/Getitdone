@@ -107,7 +107,7 @@ class button_options():
     def save_listbox(file_name):
         """Function to save listbox to file after edited"""
         save = open(file_name, "w")
-        lines = listbox.get(-1, END)
+        lines = listbox.get(0, END)
         save.writelines(lines)
         save.close
 
@@ -139,9 +139,10 @@ class button_options():
 
     def done_task():
         """Move item from todo list to completed list"""
+        x = time_functions.start_stop2()
         text = listbox.get(ACTIVE)
         file = open("Completed task", "a")
-        file.writelines(text)
+        file.writelines( text + "\n" + x )
         file.close
         listbox.delete(ACTIVE)
 
@@ -532,6 +533,7 @@ main_menu = tk.Button(
         button_options.button_gone(remove_ToDo_list),
         button_options.button_gone(task_done),
         button_options.button_gone(edit_log2),
+        button_options.button_gone(remove_completed_log),
         start_time_place1(),
         stop_time_place1(),
         log_files_place(),
@@ -586,6 +588,7 @@ def remove_ToDo_list_place1():
     remove_ToDo_list.place(height=40, width=120, x=55, y=321)
 
 
+###Button 14 mark task done to be moved to completed log###
 task_done = tk.Button(
     space,
     text="Task Done",
@@ -605,6 +608,8 @@ def task_done_place1():
     task_done.place(height=40, width=120, x=55, y=388)
 
 
+#####\\\\\\\\\\! Stage 4 buttons for completed log !//////////#####
+###Button 15 Submit edit in completed log###
 submit2 = tk.Button(
     space,
     text="Submit",
@@ -624,7 +629,7 @@ submit2 = tk.Button(
 def submit_palce2():
     submit2.place(height=40, width=120, x=55, y=254)
 
-
+###Button 16 Edit index in completed log###
 edit_log2 = tk.Button(
     space,
     text="Edit",
@@ -643,7 +648,7 @@ edit_log2 = tk.Button(
 def edit_log_place2():
     edit_log2.place(height=40, width=120, x=55, y=254)
 
-
+###Button 17 remove item from completed log###
 remove_completed_log = tk.Button(
     space,
     text="Remove",
@@ -659,13 +664,13 @@ remove_completed_log = tk.Button(
 
 
 def remove_completed_log_place1():
-    remove_time_log.place(height=40, width=120, x=55, y=321)
+    remove_completed_log.place(height=40, width=120, x=55, y=321)
 
 
 
 ### Call Function to show time###
 Label_options.show_time()
 
-
+###If time not stoped on exit pop up to ask to stop time###
 root.protocol("WM_DELETE_WINDOW", pop_ups.solve_save)
 root.mainloop()
